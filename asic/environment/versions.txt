@@ -1,0 +1,40 @@
+# ============================================================
+# ASIC Akis Ortam ve Surum Bilgileri  (sartname 1.4 / 9.2)
+# Tasarim: ram_axi  (SKY130 SRAM makro tabanli AXI4-Lite RAM)
+# ============================================================
+
+## Akis Araci
+LibreLane surumu        : 3.0.6
+LibreLane commit/tag    : ba7193bff33d68941683b2963b90aa30cea117d1  (tag: 3.0.6)
+LibreLane akisi         : Classic
+
+## PDK
+PDK adi                 : sky130A
+Open PDKs commit        : 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+Standart hucre kutuphanesi : sky130_fd_sc_hd
+PDK yoneticisi          : ciel
+
+## SRAM / OpenRAM
+OpenRAM                 : OpenRAM kullanilmadi
+SRAM makrosu            : sky130_sram_1kbyte_1rw1r_32x256_8
+                          (referans PDK icindeki onceden onaylanmis hazir makro)
+
+## Akis Araclari (LibreLane 3.0.6 Nix ortami)
+Yosys                   : 0.62 (sha1 7326bb7d)
+OpenROAD                : dcf36133a369abc8f3c5e5738cd4d82e4903c0e0
+Magic                   : 8.3.623
+Netgen                  : LibreLane 3.0.6 nix-eda 6.11.0 ortamiyla saglanan surum
+KLayout                 : 0.30.7
+Verilator               : LibreLane 3.0.6 ortamiyla saglanan surum
+
+## Ortam
+Ortam yonetimi          : Nix (Determinate Nix 3.21.9)
+nix-eda                 : 6.11.0
+Not: LibreLane flake.nix icinde iverilog icin doCheck=false override
+     uygulanmistir (iverilog test paketi bu ortamda 1 testte takiliyor,
+     arac islevsel; ayrinti README bilinen sorunlar bolumunde).
+
+## Akisi calistirmak icin komutlar
+1) cd ~/librelane && nix develop        # LibreLane 3.0.6 ortamina gir
+2) ciel enable --pdk-family sky130 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+3) cd <repo>/asic && make asic_run       # akisi calistir + ciktilari topla

@@ -1,0 +1,7 @@
+
+16. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\ram_axi.\sram_csb0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
+No latch inferred for signal `\ram_axi.\sram_web0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
+No latch inferred for signal `\ram_axi.\sram_wmask0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
+No latch inferred for signal `\ram_axi.\sram_addr0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
+No latch inferred for signal `\ram_axi.\sram_din0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.

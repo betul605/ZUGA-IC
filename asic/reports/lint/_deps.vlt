@@ -1,0 +1,7 @@
+`verilator_config
+lint_off -rule DECLFILENAME
+lint_off -rule EOFNEWLINE
+lint_off -rule UNDRIVEN -file "/home/ubuntu/zuga-final/asic/runs/run1/tmp/c21b794003f54c7da6073080743dc046.bb.v"
+lint_off -rule UNUSEDSIGNAL -file "/home/ubuntu/zuga-final/asic/runs/run1/tmp/c21b794003f54c7da6073080743dc046.bb.v"
+lint_off -rule UNDRIVEN -file "/home/ubuntu/zuga-final/asic/runs/run1/tmp/0899a6fba7464279b8d19e0718e9bc54.bb.v"
+lint_off -rule UNUSEDSIGNAL -file "/home/ubuntu/zuga-final/asic/runs/run1/tmp/0899a6fba7464279b8d19e0718e9bc54.bb.v"

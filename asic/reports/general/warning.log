@@ -1,0 +1,77 @@
+5 Lint warnings found.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_ss_100C_1v60. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_ff_n40C_1v95. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner min_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner min_ss_100C_1v60. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner min_ff_n40C_1v95. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner max_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner max_ss_100C_1v60. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner max_ff_n40C_1v95. The netlist cannot be used for timing on this module.
+Cell 'sky130_sram_1kbyte_1rw1r_32x256_8' has (57) input pin(s) without antenna gate information. They might not be connected to a gate.
+Cell 'sky130_sram_1kbyte_1rw1r_32x256_8' has (64) output pin(s) without antenna diffusion information. They might not be driven.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 1, library sky130_fd_sc_hd__tt_025C_1v80 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib line 1, library sky130_fd_sc_hd__ff_n40C_1v95 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib line 1, library sky130_fd_sc_hd__ss_100C_1v60 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 1, library sky130_fd_sc_hd__tt_025C_1v80 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib line 1, library sky130_fd_sc_hd__ss_100C_1v60 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib line 1, library sky130_fd_sc_hd__ff_n40C_1v95 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 1, library sky130_fd_sc_hd__tt_025C_1v80 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib line 1, library sky130_fd_sc_hd__ff_n40C_1v95 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib line 1, library sky130_fd_sc_hd__ss_100C_1v60 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 1, library sky130_fd_sc_hd__tt_025C_1v80 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib line 1, library sky130_fd_sc_hd__ss_100C_1v60 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib line 1, library sky130_fd_sc_hd__ff_n40C_1v95 already exists.
+[STA-1140] /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_ss_100C_1v60. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner nom_ff_n40C_1v95. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner min_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner min_ss_100C_1v60. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner min_ff_n40C_1v95. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner max_tt_025C_1v80. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner max_ss_100C_1v60. The netlist cannot be used for timing on this module.
+Netlists found for macro sky130_sram_1kbyte_1rw1r_32x256_8, but no parasitics extraction found at corner max_ff_n40C_1v95. The netlist cannot be used for timing on this module.
+'VSRC_LOC_FILES' was not given a value, which may make the results of IR drop analysis inaccurate. If you are not integrating a top-level chip for manufacture, you may ignore this warning, otherwise, see the documentation for 'VSRC_LOC_FILES'.
+Cell 'ram_axi' has (54) input pin(s) without antenna gate information. They might not be connected to a gate.
+Cell 'ram_axi' has (4) output pin(s) without antenna diffusion information. They might not be driven.
+210 Magic DRC errors found.
+The KLayout DRC errors metric was not found. Are you sure the relevant step was run?
+Max Slew violations found in the following corners:
+* max_ff_n40C_1v95
+* max_ss_100C_1v60
+* max_tt_025C_1v80
+* min_ff_n40C_1v95
+* min_ss_100C_1v60
+* min_tt_025C_1v80
+* nom_ff_n40C_1v95
+* nom_ss_100C_1v60
+* nom_tt_025C_1v80
+klayout__drc_error__count not reported. KLayout.DRC may have been skipped.

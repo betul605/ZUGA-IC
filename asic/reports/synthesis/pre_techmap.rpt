@@ -1,0 +1,33 @@
+101. Printing statistics.
+
+=== ram_axi ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       48 wires
+      194 wire bits
+       26 public wires
+      172 public wire bits
+       21 ports
+      154 port bits
+       43 cells
+       13   $_ANDNOT_
+        8   $_AND_
+        3   $_DFF_PN0_
+        1   $_DFF_PN1_
+        8   $_MUX_
+        2   $_NAND_
+        2   $_NOT_
+        5   $_OR_
+        1   sky130_sram_1kbyte_1rw1r_32x256_8
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFF_PN0_ is unknown!
+   Area for cell type $_DFF_PN1_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type \sky130_sram_1kbyte_1rw1r_32x256_8 is unknown!
+

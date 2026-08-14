@@ -1,0 +1,28 @@
+%Warning-PINCONNECTEMPTY: /home/ubuntu/zuga-final/rtl/ram_axi.sv:163:10: Instance pin connected by name with empty reference: 'dout1'
+  163 |         .dout1  ()              
+      |          ^~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.044
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-UNUSEDPARAM: /home/ubuntu/zuga-final/rtl/ram_axi.sv:15:15: Parameter is not used: 'SIZE_WORDS'
+                                                                  : ... note: In instance 'ram_axi'
+   15 |     parameter SIZE_WORDS = 256,     
+      |               ^~~~~~~~~~
+                      ... For warning description see https://verilator.org/warn/UNUSEDPARAM?v=5.044
+                      ... Use "/* verilator lint_off UNUSEDPARAM */" and lint_on around source to disable this message.
+%Warning-UNUSEDPARAM: /home/ubuntu/zuga-final/rtl/ram_axi.sv:16:15: Parameter is not used: 'MEM_FILE'
+                                                                  : ... note: In instance 'ram_axi'
+   16 |     parameter MEM_FILE = "",      
+      |               ^~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/rtl/ram_axi.sv:28:25: Bits of signal are not used: 'axi_awaddr_i'[31:10,1:0]
+                                                                   : ... note: In instance 'ram_axi'
+   28 |     input  logic [31:0] axi_awaddr_i,
+      |                         ^~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.044
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/rtl/ram_axi.sv:44:25: Bits of signal are not used: 'axi_araddr_i'[31:10,1:0]
+                                                                   : ... note: In instance 'ram_axi'
+   44 |     input  logic [31:0] axi_araddr_i,
+      |                         ^~~~~~~~~~~~
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.040
+- Verilator: Built from 0.561 MB sources in 449 modules, into 0.018 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.029 s (elab=0.007, cvt=0.003, bld=0.000); cpu 0.029 s on 1 threads; alloced 28.125 MB

@@ -1,0 +1,55 @@
+{
+   "creator": "Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/ubuntu/zuga-final/asic/runs/run1/tmp/3f3fa67359f14036a79b885ec26d06b1.lib ",
+   "modules": {
+      "\\ram_axi": {
+         "num_wires":         48,
+         "num_wire_bits":     194,
+         "num_pub_wires":     26,
+         "num_pub_wire_bits": 172,
+         "num_ports":         21,
+         "num_port_bits":     154,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         43,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 13,
+            "$_AND_": 8,
+            "$_DFF_PN0_": 3,
+            "$_DFF_PN1_": 1,
+            "$_MUX_": 8,
+            "$_NAND_": 2,
+            "$_NOT_": 2,
+            "$_OR_": 5,
+            "sky130_sram_1kbyte_1rw1r_32x256_8": 1
+         }
+      }
+   },
+      "design": {
+         "num_wires":         48,
+         "num_wire_bits":     194,
+         "num_pub_wires":     26,
+         "num_pub_wire_bits": 172,
+         "num_ports":         21,
+         "num_port_bits":     154,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         43,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 13,
+            "$_AND_": 8,
+            "$_DFF_PN0_": 3,
+            "$_DFF_PN1_": 1,
+            "$_MUX_": 8,
+            "$_NAND_": 2,
+            "$_NOT_": 2,
+            "$_OR_": 5,
+            "sky130_sram_1kbyte_1rw1r_32x256_8": 1
+         }
+      }
+}
+

@@ -1,0 +1,34 @@
+115. Printing statistics.
+
+=== ram_axi ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+       56        - wires
+      189        - wire bits
+       37        - public wires
+      170        - public wire bits
+       21        - ports
+      154        - port bits
+       45  372.858 cells
+        2   17.517   sky130_fd_sc_hd__a21o_2
+        1    10.01   sky130_fd_sc_hd__a22o_2
+        1    8.758   sky130_fd_sc_hd__a31o_2
+        8   90.086   sky130_fd_sc_hd__a32o_2
+        7    52.55   sky130_fd_sc_hd__and2_2
+        1    7.507   sky130_fd_sc_hd__and3_2
+        1    5.005   sky130_fd_sc_hd__buf_2
+       13   48.797   sky130_fd_sc_hd__conb_1
+        3   78.826   sky130_fd_sc_hd__dfrtp_2
+        1   26.275   sky130_fd_sc_hd__dfstp_2
+        4   15.014   sky130_fd_sc_hd__inv_2
+        1    6.256   sky130_fd_sc_hd__nand2_2
+        1    6.256   sky130_fd_sc_hd__nor2_2
+        1        -   sky130_sram_1kbyte_1rw1r_32x256_8
+
+   Area for cell type \sky130_sram_1kbyte_1rw1r_32x256_8 is unknown!
+
+   Chip area for module '\ram_axi': 372.857600
+     of which used for sequential elements: 105.100800 (28.19%)
+

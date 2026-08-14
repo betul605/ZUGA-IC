@@ -1,0 +1,1 @@
+openroad -exit -no_splash -metrics /home/ubuntu/zuga-final/asic/runs/run1/55-openroad-irdropreport/or_metrics_out.json /nix/store/n0rdaqcanncznj1mwb8g93y7z5lcg2fw-python3-3.13.9-env/lib/python3.13/site-packages/librelane/scripts/openroad/irdrop.tcl

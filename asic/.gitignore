@@ -1,2 +1,3 @@
-netlists/
-*_err.txt
+runs/
+run/*
+!run/.gitkeep

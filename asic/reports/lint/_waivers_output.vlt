@@ -1,0 +1,19 @@
+// DESCRIPTION: Verilator output: Waivers generated with --waiver-output
+
+`verilator_config
+
+// Below are suggested waivers. You have three options:
+//   1. Fix the reason for the linter warning in the Verilog sources
+//   2. Keep the waiver permanently if you are sure it is okay
+//   3. Keep the waiver temporarily to suppress the output
+
+// lint_off -rule PINCONNECTEMPTY -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Instance pin connected by name with empty reference: 'dout1'*"
+
+// lint_off -rule UNUSEDPARAM -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Parameter is not used: 'SIZE_WORDS'*"
+
+// lint_off -rule UNUSEDPARAM -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Parameter is not used: 'MEM_FILE'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Bits of signal are not used: 'axi_awaddr_i'[31:10,1:0]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Bits of signal are not used: 'axi_araddr_i'[31:10,1:0]*"
+
