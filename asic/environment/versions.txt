@@ -1,6 +1,6 @@
 # ============================================================
 # ASIC Akis Ortam ve Surum Bilgileri  (sartname 1.4 / 9.2)
-# Tasarim: ram_axi  (SKY130 SRAM makro tabanli AXI4-Lite RAM)
+# Tasarim: yz_top_sram (SRAM giris bufferli int8 CNN hizlandirici SoC)
 # ============================================================
 
 ## Akis Araci
@@ -16,7 +16,7 @@ PDK yoneticisi          : ciel
 
 ## SRAM / OpenRAM
 OpenRAM                 : OpenRAM kullanilmadi
-SRAM makrosu            : sky130_sram_1kbyte_1rw1r_32x256_8
+SRAM makrosu            : sky130_sram_1kbyte_1rw1r_32x256_8 (yz_top_sram giris buffer)
                           (referans PDK icindeki onceden onaylanmis hazir makro)
 
 ## Akis Araclari (LibreLane 3.0.6 Nix ortami)

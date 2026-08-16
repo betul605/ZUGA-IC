@@ -1,28 +1,108 @@
-%Warning-PINCONNECTEMPTY: /home/ubuntu/zuga-final/rtl/ram_axi.sv:163:10: Instance pin connected by name with empty reference: 'dout1'
-  163 |         .dout1  ()              
-      |          ^~~~~
+%Warning-PINCONNECTEMPTY: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:554:4: Instance pin connected by name with empty reference: 'dout1'
+  554 |   .dout1()
+      |    ^~~~~
                           ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.044
                           ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
-%Warning-UNUSEDPARAM: /home/ubuntu/zuga-final/rtl/ram_axi.sv:15:15: Parameter is not used: 'SIZE_WORDS'
-                                                                  : ... note: In instance 'ram_axi'
-   15 |     parameter SIZE_WORDS = 256,     
-      |               ^~~~~~~~~~
-                      ... For warning description see https://verilator.org/warn/UNUSEDPARAM?v=5.044
-                      ... Use "/* verilator lint_off UNUSEDPARAM */" and lint_on around source to disable this message.
-%Warning-UNUSEDPARAM: /home/ubuntu/zuga-final/rtl/ram_axi.sv:16:15: Parameter is not used: 'MEM_FILE'
-                                                                  : ... note: In instance 'ram_axi'
-   16 |     parameter MEM_FILE = "",      
-      |               ^~~~~~~~
-%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/rtl/ram_axi.sv:28:25: Bits of signal are not used: 'axi_awaddr_i'[31:10,1:0]
-                                                                   : ... note: In instance 'ram_axi'
-   28 |     input  logic [31:0] axi_awaddr_i,
-      |                         ^~~~~~~~~~~~
+%Warning-PINMISSING: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:543:36: Instance has missing pin: 'vccd1'
+  543 |  sky130_sram_1kbyte_1rw1r_32x256_8 u_sram_in(
+      |                                    ^~~~~~~~~
+                     /home/ubuntu/zuga-final/asic/runs/run1/tmp/37886f1ae91d4e5bb74544c8720f2e39.bb.v:3:42: ... Location of port declaration
+    3 | module sky130_sram_1kbyte_1rw1r_32x256_8(vccd1, vssd1, clk0, csb0, web0, wmask0, addr0, din0, dout0, clk1, csb1, addr1, dout1);
+      |                                          ^~~~~
+                     ... For warning description see https://verilator.org/warn/PINMISSING?v=5.044
+                     ... Use "/* verilator lint_off PINMISSING */" and lint_on around source to disable this message.
+%Warning-PINMISSING: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:543:36: Instance has missing pin: 'vssd1'
+  543 |  sky130_sram_1kbyte_1rw1r_32x256_8 u_sram_in(
+      |                                    ^~~~~~~~~
+                     /home/ubuntu/zuga-final/asic/runs/run1/tmp/37886f1ae91d4e5bb74544c8720f2e39.bb.v:3:49: ... Location of port declaration
+    3 | module sky130_sram_1kbyte_1rw1r_32x256_8(vccd1, vssd1, clk0, csb0, web0, wmask0, addr0, din0, dout0, clk1, csb1, addr1, dout1);
+      |                                                 ^~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:497:14: Signal is not used: 'yz_in_addr'
+                                                                            : ... note: In instance 'yz_top_sram'
+  497 |  wire [31:0] yz_in_addr;
+      |              ^~~~~~~~~~
                        ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.044
                        ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
-%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/rtl/ram_axi.sv:44:25: Bits of signal are not used: 'axi_araddr_i'[31:10,1:0]
-                                                                   : ... note: In instance 'ram_axi'
-   44 |     input  logic [31:0] axi_araddr_i,
-      |                         ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:498:14: Signal is not used: 'yz_out_addr'
+                                                                            : ... note: In instance 'yz_top_sram'
+  498 |  wire [31:0] yz_out_addr;
+      |              ^~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:499:14: Signal is not used: 'yz_wt_addr'
+                                                                            : ... note: In instance 'yz_top_sram'
+  499 |  wire [31:0] yz_wt_addr;
+      |              ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:500:14: Signal is not used: 'yz_len'
+                                                                            : ... note: In instance 'yz_top_sram'
+  500 |  wire [31:0] yz_len;
+      |              ^~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:501:13: Signal is not used: 'yz_ksize'
+                                                                            : ... note: In instance 'yz_top_sram'
+  501 |  wire [3:0] yz_ksize;
+      |             ^~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:502:13: Signal is not used: 'yz_stride'
+                                                                            : ... note: In instance 'yz_top_sram'
+  502 |  wire [3:0] yz_stride;
+      |             ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:541:14: Bits of signal are not used: 'sram_dout'[31:8]
+                                                                            : ... note: In instance 'yz_top_sram'
+  541 |  wire [31:0] sram_dout;
+      |              ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:563:14: Signal is not used: 'yz_cyc'
+                                                                            : ... note: In instance 'yz_top_sram'
+  563 |  wire [31:0] yz_cyc;
+      |              ^~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:564:13: Signal is not used: 'yz_argmax'
+                                                                            : ... note: In instance 'yz_top_sram'
+  564 |  wire [7:0] yz_argmax;
+      |             ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:39:20: Bits of signal are not used: 'axi_awaddr_i'[31:5]
+                                                                           : ... note: In instance 'yz_top_sram.u_csr'
+   39 |  input wire [31:0] axi_awaddr_i;
+      |                    ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:40:19: Signal is not used: 'axi_awprot_i'
+                                                                           : ... note: In instance 'yz_top_sram.u_csr'
+   40 |  input wire [2:0] axi_awprot_i;
+      |                   ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:44:19: Signal is not used: 'axi_wstrb_i'
+                                                                           : ... note: In instance 'yz_top_sram.u_csr'
+   44 |  input wire [3:0] axi_wstrb_i;
+      |                   ^~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:50:20: Bits of signal are not used: 'axi_araddr_i'[31:5]
+                                                                           : ... note: In instance 'yz_top_sram.u_csr'
+   50 |  input wire [31:0] axi_araddr_i;
+      |                    ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:51:19: Signal is not used: 'axi_arprot_i'
+                                                                           : ... note: In instance 'yz_top_sram.u_csr'
+   51 |  input wire [2:0] axi_arprot_i;
+      |                   ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:197:20: Bits of signal are not used: 'logit_addr_i'[15:2]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  197 |  input wire [15:0] logit_addr_i;
+      |                    ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:201:20: Bits of signal are not used: 'mem_addr_i'[15:9]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  201 |  input wire [15:0] mem_addr_i;
+      |                    ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:239:13: Bits of signal are not used: 'am_idx'[31:8]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  239 |  reg [31:0] am_idx;
+      |             ^~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:246:14: Bits of signal are not used: 'in_idx'[31:6]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  246 |  wire [31:0] in_idx;
+      |              ^~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:247:14: Bits of signal are not used: 'wc_idx'[31:5]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  247 |  wire [31:0] wc_idx;
+      |              ^~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:248:14: Bits of signal are not used: 'act_idx'[31:7]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  248 |  wire [31:0] act_idx;
+      |              ^~~~~~~
+%Warning-UNUSEDSIGNAL: /home/ubuntu/zuga-final/asic/src/yz_top_sram.v:249:14: Bits of signal are not used: 'wf_idx'[31:9]
+                                                                            : ... note: In instance 'yz_top_sram.u_accel'
+  249 |  wire [31:0] wf_idx;
+      |              ^~~~~~
 - V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.040
-- Verilator: Built from 0.561 MB sources in 449 modules, into 0.018 MB in 3 C++ files needing 0.000 MB
-- Verilator: Walltime 0.029 s (elab=0.007, cvt=0.003, bld=0.000); cpu 0.029 s on 1 threads; alloced 28.125 MB
+- Verilator: Built from 0.574 MB sources in 451 modules, into 0.073 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.045 s (elab=0.013, cvt=0.012, bld=0.000); cpu 0.045 s on 1 threads; alloced 28.980 MB

@@ -3,24 +3,24 @@
 ########## IR report #################
 Net              : VPWR
 Corner           : nom_tt_025C_1v80
-Total power      : 2.03e-03 W
+Total power      : 8.45e-03 W
 Supply voltage   : 1.80e+00 V
 Worstcase voltage: 1.80e+00 V
 Average voltage  : 1.80e+00 V
-Average IR drop  : 1.60e-06 V
-Worstcase IR drop: 6.14e-04 V
-Percentage drop  : 0.03 %
+Average IR drop  : 2.10e-05 V
+Worstcase IR drop: 7.01e-04 V
+Percentage drop  : 0.04 %
 ######################################
 + analyze_power_grid -net VGND -voltage_file /home/ubuntu/zuga-final/asic/runs/run1/55-openroad-irdropreport/net-VGND.csv
 [INFO PSM-0040] All shapes on net VGND are connected.
 ########## IR report #################
 Net              : VGND
 Corner           : nom_tt_025C_1v80
-Total power      : 2.03e-03 W
+Total power      : 8.45e-03 W
 Supply voltage   : 0.00e+00 V
-Worstcase voltage: 6.25e-04 V
-Average voltage  : 1.37e-06 V
-Average IR drop  : 1.37e-06 V
-Worstcase IR drop: 6.25e-04 V
-Percentage drop  : 0.03 %
+Worstcase voltage: 7.43e-04 V
+Average voltage  : 2.08e-05 V
+Average IR drop  : 2.08e-05 V
+Worstcase IR drop: 7.43e-04 V
+Percentage drop  : 0.04 %
 ######################################

@@ -7,13 +7,51 @@
 //   2. Keep the waiver permanently if you are sure it is okay
 //   3. Keep the waiver temporarily to suppress the output
 
-// lint_off -rule PINCONNECTEMPTY -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Instance pin connected by name with empty reference: 'dout1'*"
+// lint_off -rule PINCONNECTEMPTY -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Instance pin connected by name with empty reference: 'dout1'*"
 
-// lint_off -rule UNUSEDPARAM -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Parameter is not used: 'SIZE_WORDS'*"
+// lint_off -rule PINMISSING -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Instance has missing pin: 'vccd1'*"
 
-// lint_off -rule UNUSEDPARAM -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Parameter is not used: 'MEM_FILE'*"
+// lint_off -rule PINMISSING -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Instance has missing pin: 'vssd1'*"
 
-// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Bits of signal are not used: 'axi_awaddr_i'[31:10,1:0]*"
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_in_addr'*"
 
-// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/rtl/ram_axi.sv" -match "Bits of signal are not used: 'axi_araddr_i'[31:10,1:0]*"
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_out_addr'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_wt_addr'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_len'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_ksize'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_stride'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'sram_dout'[31:8]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_cyc'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'yz_argmax'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'axi_awaddr_i'[31:5]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'axi_awprot_i'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'axi_wstrb_i'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'axi_araddr_i'[31:5]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Signal is not used: 'axi_arprot_i'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'logit_addr_i'[15:2]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'mem_addr_i'[15:9]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'am_idx'[31:8]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'in_idx'[31:6]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'wc_idx'[31:5]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'act_idx'[31:7]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/home/ubuntu/zuga-final/asic/src/yz_top_sram.v" -match "Bits of signal are not used: 'wf_idx'[31:9]*"
 

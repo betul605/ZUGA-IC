@@ -109,9 +109,9 @@
     "ENDCAP_CELL": "sky130_fd_sc_hd__decap_3",
     "DESIGN_DIR": "/home/ubuntu/zuga-final/asic",
     "PDK_ROOT": "/home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71",
-    "DESIGN_NAME": "ram_axi",
+    "DESIGN_NAME": "yz_top_sram",
     "PDK": "sky130A",
-    "CLOCK_PERIOD": 20,
+    "CLOCK_PERIOD": 65,
     "CLOCK_PORT": "clk_i",
     "CLOCK_NET": null,
     "VDD_NETS": [
@@ -123,8 +123,8 @@
     "DIE_AREA": [
         0,
         0,
-        640,
-        540
+        1150,
+        1100
     ],
     "EXTRA_EXCLUDED_CELLS": null,
     "MACROS": {
@@ -136,7 +136,7 @@
                 "/home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
             ],
             "instances": {
-                "u_sram": {
+                "u_sram_in": {
                     "location": [
                         70,
                         70
@@ -185,7 +185,7 @@
     "PAD_PLACE_IO_TERMINALS": null,
     "PAD_EDGE_SPACING": 0,
     "VERILOG_FILES": [
-        "/home/ubuntu/zuga-final/rtl/ram_axi.sv"
+        "/home/ubuntu/zuga-final/asic/src/yz_top_sram.v"
     ],
     "VERILOG_INCLUDE_DIRS": null,
     "VERILOG_POWER_DEFINE": "USE_POWER_PINS",

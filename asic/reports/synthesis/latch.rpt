@@ -1,7 +1,21 @@
 
 16. Executing PROC_DLATCH pass (convert process syncs to latches).
-No latch inferred for signal `\ram_axi.\sram_csb0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
-No latch inferred for signal `\ram_axi.\sram_web0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
-No latch inferred for signal `\ram_axi.\sram_wmask0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
-No latch inferred for signal `\ram_axi.\sram_addr0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
-No latch inferred for signal `\ram_axi.\sram_din0' from process `\ram_axi.$proc$/home/ubuntu/zuga-final/rtl/ram_axi.sv:94$13'.
+No latch inferred for signal `\yz_top_sram.\_sv2v_0' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:753$50'.
+No latch inferred for signal `\yz_top_sram.\acc_mem_we' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:729$41'.
+No latch inferred for signal `\yz_top_sram.\acc_mem_region' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:729$41'.
+No latch inferred for signal `\yz_top_sram.\acc_mem_addr' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:729$41'.
+No latch inferred for signal `\yz_top_sram.\acc_mem_wdata' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:729$41'.
+No latch inferred for signal `\yz_top_sram.\sram_csb' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:704$40'.
+No latch inferred for signal `\yz_top_sram.\sram_web' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:704$40'.
+No latch inferred for signal `\yz_top_sram.\sram_addr' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:704$40'.
+No latch inferred for signal `\yz_top_sram.\sram_din' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:704$40'.
+No latch inferred for signal `\yz_top_sram.\sram_wmask' from process `\yz_top_sram.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:704$40'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$mem2reg_rd$\logitm$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:227$56_DATA' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:227$246'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.\sv2v_cast_32_signed$func$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$52.$result' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$237'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.\sv2v_cast_32_signed$func$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$55.$result' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$237'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.\sv2v_cast_32_signed$func$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$55.inp' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$237'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$mem2reg_rd$\actm$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$62_ADDR' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$237'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$mem2reg_rd$\actm$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$62_DATA' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:263$237'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.\sv2v_cast_32_signed$func$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:261$51.$result' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:261$231'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.\sv2v_cast_32_signed$func$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:261$54.$result' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:261$231'.
+No latch inferred for signal `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.\sv2v_cast_32_signed$func$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:261$54.inp' from process `$paramod$eacb8474c7e12de34c6ebe00a42da6a4da8dee52\yz_accel.$proc$/home/ubuntu/zuga-final/asic/src/yz_top_sram.v:261$231'.

@@ -8,7 +8,7 @@ set -u
 TAG="${1:-run1}"
 ASIC="$(cd "$(dirname "$0")/.." && pwd)"
 RUN="$ASIC/runs/$TAG"
-DES="ram_axi"
+DES="yz_top_sram"
 
 [ -d "$RUN" ] || { echo "HATA: $RUN yok. Once akisi calistir."; exit 1; }
 

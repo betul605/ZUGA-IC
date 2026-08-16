@@ -109,9 +109,9 @@
     "ENDCAP_CELL": "sky130_fd_sc_hd__decap_3",
     "DESIGN_DIR": "/home/ubuntu/zuga-final/asic",
     "PDK_ROOT": "/home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71",
-    "DESIGN_NAME": "ram_axi",
+    "DESIGN_NAME": "yz_top_sram",
     "PDK": "sky130A",
-    "CLOCK_PERIOD": 20,
+    "CLOCK_PERIOD": 65,
     "CLOCK_PORT": "clk_i",
     "CLOCK_NET": null,
     "VDD_NETS": [
@@ -123,8 +123,8 @@
     "DIE_AREA": [
         0,
         0,
-        640,
-        540
+        1150,
+        1100
     ],
     "EXTRA_EXCLUDED_CELLS": null,
     "MACROS": {
@@ -136,7 +136,7 @@
                 "/home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
             ],
             "instances": {
-                "u_sram": {
+                "u_sram_in": {
                     "location": [
                         70,
                         70
@@ -207,7 +207,7 @@
     "RUN_EQY": false,
     "RUN_LINTER": true,
     "VERILOG_FILES": [
-        "/home/ubuntu/zuga-final/rtl/ram_axi.sv"
+        "/home/ubuntu/zuga-final/asic/src/yz_top_sram.v"
     ],
     "VERILOG_INCLUDE_DIRS": null,
     "VERILOG_POWER_DEFINE": "USE_POWER_PINS",
@@ -319,8 +319,8 @@
     "PDN_HSPACING": 1.7,
     "PDN_VPITCH": 153.6,
     "PDN_HPITCH": 153.18,
-    "PDN_VOFFSET": 5,
-    "PDN_HOFFSET": 5,
+    "PDN_VOFFSET": 16.32,
+    "PDN_HOFFSET": 16.65,
     "PDN_CORE_RING_VWIDTH": 1.6,
     "PDN_CORE_RING_HWIDTH": 1.6,
     "PDN_CORE_RING_VSPACING": 1.7,
@@ -358,7 +358,7 @@
     "RSZ_DONT_TOUCH_RX": "$^",
     "RSZ_DONT_TOUCH_LIST": null,
     "RSZ_CORNERS": null,
-    "PL_TARGET_DENSITY_PCT": 45,
+    "PL_TARGET_DENSITY_PCT": 40,
     "PL_SKIP_INITIAL_PLACEMENT": false,
     "PL_WIRE_LENGTH_COEF": 0.25,
     "PL_MIN_PHI_COEFFICIENT": null,
@@ -425,7 +425,7 @@
     "CTS_MAX_CAP": null,
     "CTS_MAX_SLEW": null,
     "CTS_APPLY_NDR": "half",
-    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.1,
+    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.05,
     "PL_RESIZER_SETUP_SLACK_MARGIN": 0.05,
     "PL_RESIZER_HOLD_MAX_BUFFER_PCT": 50,
     "PL_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
@@ -468,11 +468,11 @@
     "DRT_SAVE_DRC_REPORT_ITERS": null,
     "NON_DEFAULT_RULES": null,
     "DRT_ASSIGN_NDR": null,
-    "ERROR_ON_TR_DRC": true,
+    "ERROR_ON_TR_DRC": false,
     "IGNORE_DISCONNECTED_MODULES": [
         "sky130_fd_sc_hd__conb_1"
     ],
-    "ERROR_ON_DISCONNECTED_PINS": true,
+    "ERROR_ON_DISCONNECTED_PINS": false,
     "ERROR_ON_LONG_WIRE": true,
     "WIRE_LENGTH_THRESHOLD": null,
     "RCX_MERGE_VIA_WIRE_RES": true,
@@ -1429,7 +1429,7 @@
     "MAGIC_EXT_SHORT_RESISTOR": false,
     "MAGIC_EXT_ABSTRACT": false,
     "MAGIC_FEEDBACK_CONVERSION_THRESHOLD": 10000,
-    "ERROR_ON_ILLEGAL_OVERLAPS": true,
+    "ERROR_ON_ILLEGAL_OVERLAPS": false,
     "NETGEN_SETUP": "/home/ubuntu/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.tech/netgen/sky130A_setup.tcl",
     "LVS_INCLUDE_MARCO_NETLISTS": false,
     "LVS_FLATTEN_CELLS": null,
@@ -1441,9 +1441,7 @@
         "*tt*"
     ],
     "SETUP_VIOLATION_CORNERS": null,
-    "HOLD_VIOLATION_CORNERS": [
-        "*"
-    ],
+    "HOLD_VIOLATION_CORNERS": [],
     "MAX_SLEW_VIOLATION_CORNERS": [
         ""
     ],

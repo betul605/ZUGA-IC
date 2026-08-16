@@ -1,3 +1,10 @@
 runs/
 run/*
 !run/.gitkeep
+results/odb/
+results/mag/
+results/sdf/
+results/gds/yz_top_sram_magic.gds
+reports/timing/*/*.sdf
+reports/timing/*/sta.log
+reports/power/net-*.csv

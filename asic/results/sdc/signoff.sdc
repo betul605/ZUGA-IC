@@ -1,11 +1,11 @@
 ###############################################################################
 # Created by write_sdc
 ###############################################################################
-current_design ram_axi
+current_design yz_top_sram
 ###############################################################################
 # Timing Constraints
 ###############################################################################
-create_clock -name clk_i -period 20.0000 [get_ports {clk_i}]
+create_clock -name clk_i -period 65.0000 [get_ports {clk_i}]
 set_clock_uncertainty 0.2500 clk_i
 set_propagated_clock [get_clocks {clk_i}]
 set_input_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_araddr_i[0]}]
@@ -119,7 +119,6 @@ set_input_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_ws
 set_input_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_wstrb_i[2]}]
 set_input_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_wstrb_i[3]}]
 set_input_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_wvalid_i}]
-set_input_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {rst_ni}]
 set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_arready_o}]
 set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_awready_o}]
 set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_bresp_o[0]}]
@@ -161,6 +160,9 @@ set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_r
 set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_rresp_o[1]}]
 set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_rvalid_o}]
 set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {axi_wready_o}]
+set_output_delay 2.0000 -clock [get_clocks {clk_i}] -add_delay [get_ports {irq_o}]
+set_false_path\
+    -from [get_ports {rst_ni}]
 ###############################################################################
 # Environment
 ###############################################################################

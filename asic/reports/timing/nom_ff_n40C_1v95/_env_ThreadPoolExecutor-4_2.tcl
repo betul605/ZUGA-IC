@@ -41,13 +41,13 @@ set ::env(CELL_PAD_EXCLUDE) "\"sky130_fd_sc_hd__tap*\" \"sky130_fd_sc_hd__decap*
 set ::env(DIODE_CELL) sky130_fd_sc_hd__diode_2/DIODE
 set ::env(WELLTAP_CELL) sky130_fd_sc_hd__tapvpwrvgnd_1
 set ::env(ENDCAP_CELL) sky130_fd_sc_hd__decap_3
-set ::env(DESIGN_NAME) ram_axi
-set ::env(CLOCK_PERIOD) 20
+set ::env(DESIGN_NAME) yz_top_sram
+set ::env(CLOCK_PERIOD) 65
 set ::env(CLOCK_PORT) clk_i
 set ::env(VDD_NETS) VPWR
 set ::env(GND_NETS) VGND
-set ::env(DIE_AREA) "0 0 640 540"
-set ::env(MACROS) "sky130_sram_1kbyte_1rw1r_32x256_8 \"gds /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds lef /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef instances \\\"u_sram \\\\\\\"location \\\\\\\\\\\\\\\"70 70\\\\\\\\\\\\\\\" orientation N\\\\\\\"\\\" vh \\\"\\\" nl /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v pnl \\\"\\\" spef \\\"\\\" lib \\\"\\\\\\\"*\\\\\\\" /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib\\\" spice \\\"\\\" sdf \\\"\\\" json_h None\""
+set ::env(DIE_AREA) "0 0 1150 1100"
+set ::env(MACROS) "sky130_sram_1kbyte_1rw1r_32x256_8 \"gds /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds lef /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef instances \\\"u_sram_in \\\\\\\"location \\\\\\\\\\\\\\\"70 70\\\\\\\\\\\\\\\" orientation N\\\\\\\"\\\" vh \\\"\\\" nl /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v pnl \\\"\\\" spef \\\"\\\" lib \\\"\\\\\\\"*\\\\\\\" /home/ubuntu/zuga-final/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib\\\" spice \\\"\\\" sdf \\\"\\\" json_h None\""
 set ::env(FALLBACK_SDC) /nix/store/n0rdaqcanncznj1mwb8g93y7z5lcg2fw-python3-3.13.9-env/lib/python3.13/site-packages/librelane/scripts/base.sdc
 set ::env(PAD_EDGE_SPACING) 0
 set ::env(SET_RC_VERBOSE) 0
@@ -57,8 +57,8 @@ set ::env(PNR_SDC_FILE) /home/ubuntu/zuga-final/asic/constraints/design.sdc
 set ::env(DEDUPLICATE_CORNERS) 0
 set ::env(STA_MACRO_PRIORITIZE_NL) 1
 set ::env(SIGNOFF_SDC_FILE) /home/ubuntu/zuga-final/asic/constraints/design.sdc
-set ::env(CURRENT_NL) /home/ubuntu/zuga-final/asic/runs/run1/51-openroad-fillinsertion/ram_axi.nl.v
-set ::env(CURRENT_SPEF) "\"nom_*\" /home/ubuntu/zuga-final/asic/runs/run1/53-openroad-rcx/nom/ram_axi.nom.spef \"min_*\" /home/ubuntu/zuga-final/asic/runs/run1/53-openroad-rcx/min/ram_axi.min.spef \"max_*\" /home/ubuntu/zuga-final/asic/runs/run1/53-openroad-rcx/max/ram_axi.max.spef"
-set ::env(CURRENT_ODB) /home/ubuntu/zuga-final/asic/runs/run1/52-odb-cellfrequencytables/ram_axi.odb
-set ::env(SAVE_SDC) /home/ubuntu/zuga-final/asic/runs/run1/54-openroad-stapostpnr/ram_axi.sdc
+set ::env(CURRENT_NL) /home/ubuntu/zuga-final/asic/runs/run1/51-openroad-fillinsertion/yz_top_sram.nl.v
+set ::env(CURRENT_SPEF) "\"nom_*\" /home/ubuntu/zuga-final/asic/runs/run1/53-openroad-rcx/nom/yz_top_sram.nom.spef \"min_*\" /home/ubuntu/zuga-final/asic/runs/run1/53-openroad-rcx/min/yz_top_sram.min.spef \"max_*\" /home/ubuntu/zuga-final/asic/runs/run1/53-openroad-rcx/max/yz_top_sram.max.spef"
+set ::env(CURRENT_ODB) /home/ubuntu/zuga-final/asic/runs/run1/52-odb-cellfrequencytables/yz_top_sram.odb
+set ::env(SAVE_SDC) /home/ubuntu/zuga-final/asic/runs/run1/54-openroad-stapostpnr/yz_top_sram.sdc
 set ::env(OPENLANE_SDC_IDEAL_CLOCKS) 0
