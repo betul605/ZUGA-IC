@@ -1,463 +1,212 @@
+
 # ZUGA-IC
 
-TEKNOFEST 2026 Çip Tasarım Yarışması - Mikrodenetleyici Tasarım Kategorisi
+**TEKNOFEST 2026 Çip Tasarımı Yarışması — Mikrodenetleyici Tasarım Kategorisi**
 
-CV32E40P RISC-V çekirdeği üzerine kurulu, **AXI4-Lite tabanlı** System-on-Chip
-prototipi. Yapay zeka hızlandırıcı için altyapı hazır.
-
-[![GitHub commits](https://img.shields.io/badge/commits-72-brightgreen)]()
-[![Milestone](https://img.shields.io/badge/milestone-54-blue)]()
-[![Tests](https://img.shields.io/badge/AXI%20tests-117%2B%20PASS-success)]()
-[![Errors](https://img.shields.io/badge/errors-0-success)]()
-
----
+CV32E40P (RV32IMC) RISC-V çekirdeği üzerine kurulu, AXI4-Lite veri yolu tabanlı
+bir System-on-Chip. Bellek, çevre birimleri ve bir yapay zekâ hızlandırıcısı
+tek bir mimaride birleştirildi; tasarım RTL'den doğrulamaya, FPGA prototipinden
+SKY130 üzerinde fiziksel çip çizimine (GDSII) kadar götürüldü.
 
 ## Takım
 
 | Rol | İsim |
 |-----|------|
-| Takım Adı | ZUGA-IC (ID: 989786) |
+| Takım | ZUGA-IC (ID: 989786, Başvuru: 5215977) |
 | Kaptan | Umur Buğra Dikmen |
 | Üye | Betül Bedir |
 | Danışman | Dr. Fatih Gül |
-| Üniversite | Recep Tayyip Erdoğan Üniversitesi EEM |
+| Üniversite | Recep Tayyip Erdoğan Üniversitesi — Elektrik-Elektronik Mühendisliği |
 
----
+## Öne çıkanlar
 
-## Mevcut Durum (11 Mayıs 2026)
+- CV32E40P (RV32IMC) çekirdek, kendi yazdığımız OBI→AXI4-Lite köprüsü üzerinden
+  tüm alt sisteme bağlı.
+- Çevre birimleri: GPIO, Timer, iki UART (TX+RX), I2C Master; hepsi AXI4-Lite
+  slave ve şartname EK-2 yazmaç haritasına uyumlu.
+- Yapay zekâ hızlandırıcısı: TFLite Micro Speech "Tiny Conv" modelinin donanım
+  gerçeklemesi; çıkışı Python altın modeliyle bit-bit doğrulandı.
+- Doğrulama: 10/10 modül regresyon (0 hata), 5 SVA ile AXI protokol denetimi,
+  DDK resmî demo testbench'inde TEST SUCCESS.
+- FPGA: Digilent Nexys Video (Artix-7 XC7A200T) üzerinde 50 MHz, sıfır zamanlama
+  ihlali.
+- ASIC: YZ hızlandırıcı, gerçek bir SKY130 SRAM makrosuyla birlikte LibreLane
+  akışında RTL→GDSII; Netgen LVS eşleşti.
 
-### Hızlı Özet
+## Sistem mimarisi
 
-- **72 commit, 54 milestone** (M01-M54)
-- DTR Teslim: **15 Mayıs 2026** (4 gün kaldı)
-- **54 AXI transaction PASS**, 117+ handshake, **0 hata**
-- Şartname Min. Başarı Kriteri **#1 (UART RX), #2 (Self-checking), #3 (Protocol Check)** ✅
+Mimari, tek bir AXI4-Lite veri yolu ve merkezî bir adres çözücü etrafında
+kurulu. CV32E40P komut (IF) ve veri (LSU) için iki OBI portu üretir; bu portlar
+`obi_to_axi_lite` köprüsü (altı durumlu FSM) ile tek bir AXI4-Lite master'a
+dönüştürülür. Adres çözücü her erişimi ilgili belleğe veya çevre birimine
+yönlendirir. Tüm tasarım tek saat alanında çalışır; bu, saat geçişi (CDC)
+risklerini ortadan kaldırarak doğrulanabilirliği artırır.
 
-### Aşama Tablosu
+### Adres haritası
 
-| Aşama | Milestone | Durum | Sonuç |
-|-------|-----------|-------|-------|
-| RTL temel sistem | M01-M10 | ✅ TAMAM | OBI bus + 4 çevre birim |
-| I2C entegrasyonu | M11-M15 | ✅ TAMAM | 6. slave eklendi |
-| Şartname analizi | M16 | ✅ TAMAM | AXI4-Lite gereksinimi tespit |
-| AXI Bridge | M17 | ✅ TAMAM | OBI ↔ AXI4-Lite (12/12 PASS) |
-| AXI4-Lite slave geçişi | M18-M22 | ✅ TAMAM | 5 slave (37 PASS) |
-| AXI Protocol Check | M23 | ✅ TAMAM | 5 SVA, 63 handshake, 0 FAIL |
-| DTR rapor güncelleme | M24 | ✅ TAMAM | 1039 satır |
-| Test screenshot kanıtları | M25 | ✅ TAMAM | 6 PNG + 6 TXT |
-| Vivado sentez | - | 🔄 PLAN | 9-10 May (Umur ile) |
-| Boot ROM + Memory Map | - | 🔄 PLAN | 7-8 May |
-| 2. UART instance | M31 | ✅ TAMAM | uart_axi.sv 2 instance, 6/6 PASS |
-| **DTR güncelleme dalgası** | **M27-M40** | ✅ **TAMAM** | **14 milestone** |
-| Boot ROM (mühendislik zarafeti) | M29 | ✅ TAMAM | ram_axi.sv yeniden kullanım, 6/6 PASS |
-| **Ekstra puan dalgası** | **M41-M48** | ✅ **TAMAM** | **8 milestone** |
-| Regression Suite | M41 | ✅ TAMAM | 8/8 PASS otomatik |
-| Coverage Raporu | M42 | ✅ TAMAM | 199 satır, ~%82 line/%75 toggle |
-| 4 Mermaid Diyagram PNG | M44 | ✅ TAMAM | System/Modules/Handshake/Boot |
-| Boot ROM Disassembly | M46 | ✅ TAMAM | Compile + Run çift doğrulama |
-| **🌟 FAZ 7: soc_top_axi.sv** | **M49** | ✅ **TAMAM** | **520 satır, lint temiz** |
-| DTR'de Faz 7 TAMAMLANDI | M50 | ✅ TAMAM | 9 yer güncellendi |
-| **Şablon eksikleri** | **M51-M52** | ✅ **TAMAM** | **+18 puan garanti** |
-| Çip Tasarım Akışı (Bölüm 14) | M51 | ✅ TAMAM | 5p |
-| Kaynakça (Bölüm 15) | M51 | ✅ TAMAM | 2p, IEEE 21 kaynak |
-| **YZ Hızlandırıcı (Bölüm 16)** | **M52** | ✅ **TAMAM** | **11p, 9 alt bölüm** |
-| **🌟 UART RX (Test 25p kritik)** | **M53-M54** | ✅ **TAMAM** | **5/5 PASS, TX->RX loopback** |
-| Vivado sentez | - | 🔄 PLAN | 9-10 May (Umur ile) |
-| DTR şablon yapısına çevirme | - | 🔄 PLAN | 11-12 May |
-| Kapak + İçindekiler | - | 🔄 PLAN | 12-13 May |
-| PDF üretimi + format | - | 🔄 PLAN | 13-14 May |
-| DTR PDF teslim | - | 🔄 PLAN | 12-15 May |
+| Blok | Başlangıç | Bitiş | Boyut | Erişim |
+|------|-----------|-------|-------|--------|
+| Boot ROM | 0x0000_0000 | 0x0000_01FF | 512 B | Komut (R) |
+| IRAM | 0x0001_0000 | 0x0001_1FFF | 8 KB | Komut (R/W) |
+| DRAM | 0x0002_0000 | 0x0002_1FFF | 8 KB | Veri (R/W) |
+| GPIO | 0x4000_0000 | 0x4000_0007 | 8 B | AXI4-Lite |
+| Timer | 0x4000_1000 | 0x4000_101F | 32 B | AXI4-Lite |
+| UART-0 | 0x4000_2000 | 0x4000_2013 | 20 B | AXI4-Lite |
+| UART-1 | 0x4000_3000 | 0x4000_3013 | 20 B | AXI4-Lite |
+| I2C Master | 0x4000_4000 | 0x4000_4013 | 20 B | AXI4-Lite |
+| YZ CSR | 0x5000_0000 | 0x5000_001F | 32 B | AXI4-Lite |
 
----
+## Çevre birimleri
 
-## Kritik Sayılar
+| Blok | Açıklama |
+|------|----------|
+| GPIO | 16-bit yazılım çıkışı + 16-bit donanım girişi, read-after-write korumalı |
+| Timer | 8 adet 32-bit yazmaç; prescaler, auto-reload, kesme üretimi |
+| UART-0 / UART-1 | 8N1 çerçeve, programlanabilir baud, bit-ortası örnekleme, metastabilite korumalı RX; TX ve RX ayrı FSM |
+| I2C Master | 7-bit adresleme, 100 kHz standart mod, START/STOP/ACK/NACK |
 
-### Doğrulama Sonuçları
-- **OBI Sistem**: 4 self-checking test (hello, GPIO, Timer, full+I2C) — tümü PASS
-- **OBI Protocol Check**: 3 SVA, 1000 cycle, **0 FAIL**
-- **AXI Bridge**: 12 transaction (6 write + 6 read) — tümü PASS
-- **AXI Slave Bağımsız**: 25 senaryo, 37 transaction — tümü PASS
-- **AXI Protocol Check**: 5 SVA × 3 modül bind, 63 handshake — **0 FAIL**
+Yazmaç haritaları şartname EK-2 ile birebir uyumludur; her blok için C sürücü
+başlık dosyaları `sw/include` altında sağlanır.
 
-### Toplam: 162+ AXI transaction (49 fonksiyonel + 113 protocol check), 0 hata, 0 lint warning
+## Yapay zekâ hızlandırıcı
 
-### Şartname Uyumu
-| Madde | Durum |
-|-------|-------|
-| §4.1 AXI4-Lite zorunlu | ✅ Bridge + 5 slave |
-| §4.2.2 CV32E40P çekirdek | ✅ |
-| §4.2.2 Çevre birimleri (en az 2) | ✅ 5 birim (RAM, GPIO, Timer, UART, I2C) |
-| §4.2.2.1 Boot ROM | ⏳ 7-8 May |
-| §4.2.2 İkinci UART | ⏳ 11 May |
-| §5.2 #1 FPGA + 2 çevre | 🔄 Vivado sentez 9-10 May |
-| §5.2 #2 Self-checking test | ✅ KARŞILANDI |
-| §5.2 #3 AXI Protocol Check | ✅ **KARŞILANDI** |
-| §5.2 #4 YZ test | ⏳ Final dönem |
-| §5.2 #5 GDSII | ⏳ Final dönem |
-| EK-2 yazmaç haritası | ✅ 5 birim birebir uyumlu |
+Hızlandırıcı, TFLite Micro Speech "Tiny Conv" (anahtar-kelime tanıma) modelini
+donanımda gerçekler:
 
----
+`DepthwiseConv2D + ReLU` (8 filtre, 10×8 çekirdek, stride 2) → `FullyConnected`
+(4000 → 4) → argmax. Reshape ve Softmax yazılım (CPU) tarafında kalır.
 
-## Milestone Geçmişi
+DepthwiseConv2D ve FullyConnected katmanları sıralı çalıştığından **tek bir
+paylaşımlı MAC** birimi kullanılmıştır; bu, ASIC'te alanı küçük tutan bilinçli
+bir karardır. Doğrulama, bağımsız bir Python altın modeline karşı self-checking
+testbench (`tb_yz_accel`) ile yapılır; donanım ve altın model aynı sabit-nokta
+parametrelerini kullandığından sonuçlar bit düzeyinde özdeştir.
 
-Detaylı milestone raporları için: `docs/milestone_XX.md`
+Ölçülen sonuç: logit vektörü `[-55348, 78093, -91114, -59150]`, argmax = sınıf 1.
+Donanım çıkarım süresi 336.001 çevrim; muhafazakâr bir yazılım maliyet modeline
+göre (~1.810.560 çevrim) yaklaşık **5,4× hızlanma**; 50 MHz'de çıkarım gecikmesi
+≈ 6,72 ms.
 
-### Faz 1: Temel Sistem (M01-M10)
+## Doğrulama ve test
 
-- **M01**: CV32E40P entegrasyonu, basic OBI bus
-- **M02**: RAM modülü (8 KB IRAM + 8 KB DRAM)
-- **M03**: UART primitive (TX-only)
-- **M04**: GPIO 16-bit (IDR/ODR)
-- **M05**: Timer 32-bit (prescaler + event)
-- **M06**: soc_top OBI decoder, 4 çevre birim entegrasyonu
-- **M07**: OBI Protocol Check (3 SVA assertion, 1000 cycle 0 FAIL)
-- **M08**: Self-checking test programları (hello, GPIO, Timer)
-- **M09**: UART Faz 2 (TX state machine + baud generator, 'R' karakteri gözlendi)
-- **M10**: FPGA Top-Level (Arty A7-100T, pin atamaları, clock yapısı)
+Doğrulama üç katmanda yürütülür: tekil IP testleri, sistem entegrasyonu ve SVA
+protokol denetimi. Tüm testbench'ler self-checking'tir.
 
-### Faz 2: I2C Entegrasyonu (M11-M15)
+| Metrik | Sonuç |
+|--------|-------|
+| Regresyon | 10/10 modül PASS, 62 transaction, 113 AXI el sıkışması, 0 hata |
+| SVA protokol denetimi | 5 assertion (AW/W/B/AR/R kararlılık), 0 ihlal |
+| Kapsama | satır %74,5 (310/416), dal %66,8 (286/428) |
+| DDK demo testbench | TEST SUCCESS (Vivado 2021.2) |
+| YZ hızlandırıcı | altın modelle bit-bit eşleşme, PASS |
 
-- **M11**: DTR rapor şablonu hazırlandı (12 bölüm)
-- **M12**: Mimari diyagram (3 Mermaid)
-- **M13**: I2C Master modülü (OpenCores tarzı, 6 yazmaç)
-- **M14**: I2C testbench (5 senaryo PASS)
-- **M15**: 6. slave entegrasyonu, full regression test
+Elemeye esas resmî DDK demo testbench'i, çekirdek ve UART entegrasyonunu doğrular:
+çekirdek üzerinde koşan C programı UART'tan "R" gönderir, "A" alır ve
+"Hello World!" dizisini iletir; testbench TEST SUCCESS üretir.
 
-### Faz 3: Şartname Analizi + AXI4-Lite Geçişi (M16-M22)
+## FPGA prototipleme
 
-**Kritik Karar:** Şartname §4.1 AXI4-Lite zorunlu kıldığı tespit edildi (M16). 8 fazlı geçiş planı yapıldı.
+Tasarım Digilent **Nexys Video** (Xilinx Artix-7 **XC7A200T**) üzerinde
+sentezlenmiş, yerleştirilmiş, yönlendirilmiş ve bitstream olarak yüklenmiştir.
 
-- **M16**: Şartname detaylı analizi (`docs/SARTNAME_ANALIZI.md`)
-- **M17 (Faz 1)**: OBI ↔ AXI4-Lite Bridge — `obi_to_axi_lite.sv` (12/12 PASS)
-- **M18 (Faz 2)**: RAM AXI4-Lite — `ram_axi.sv` (parametreli IRAM/DRAM, 4/4 PASS)
-- **M19 (Faz 3)**: GPIO AXI4-Lite — `gpio_axi.sv` (32-bit, EK-2 uyumlu, 5/5 PASS)
-- **M20 (Faz 4)**: Timer AXI4-Lite — `timer_axi.sv` (8 yazmaç, EK-2, 5/5 PASS)
-- **M21 (Faz 5)**: UART AXI4-Lite — `uart_axi.sv` (TX state machine + baud, 6/6 PASS)
-- **M22 (Faz 6)**: I2C AXI4-Lite — `i2c_master_axi.sv` (10-durumlu state machine, 5/5 PASS)
+| Parametre | Değer |
+|-----------|-------|
+| Sistem saati | 50 MHz (20 ns) |
+| WNS / WHS | +2,432 ns / +0,071 ns |
+| Zamanlama ihlali | 0 (6376 endpoint) |
+| Kaynak | ~%4 LUT, ~%1 FF |
 
-**Faz 7 (soc_top entegrasyon)** Final teslimine ertelendi (alt-sistem testleri yeterli kanıt sağladı).
+Kartta DONE LED yanar, GPIO LED'leri çekirdek tarafından sürülür ve OLED ekrana
+çekirdek üzerinden dizi yazdırılır — işlemci ve çevre birimlerinin gerçek
+donanımda birlikte çalıştığının kanıtı.
 
-### Faz 4: Doğrulama + DTR Birinci Dalga (M23-M26, 3-5 May)
+## ASIC fiziksel tasarım
 
-- **M23 (Faz 8)**: AXI Protocol Check — `axi_lite_assertions.sv` (5 SVA, 3 modül bind, 63 handshake / 0 FAIL)
-- **M24**: DTR rapor AXI sonuçları ile güncellendi (Bölüm 1, 7, 12 — 855→1039 satır)
-- **M25**: Test screenshot kanıtları (6 PNG + 6 TXT, `docs/screenshots/`)
-- **M26**: README.md kapsamlı yenileme (81→421 satır)
+Yapay zekâ hızlandırıcı alt sistemi (`yz_top_sram` = `yz_accel` + `yz_csr` +
+SKY130 SRAM makrosu + yükleyici FSM), LibreLane Classic akışıyla RTL'den
+GDSII'ye götürülmüştür.
 
-### Faz 5: Boot ROM + Dual UART + DTR İkinci Dalga (M27-M39, 7 May)
+| Öğe | Değer |
+|-----|-------|
+| Akış | LibreLane 3.0.6 (Nix, Classic) |
+| PDK | SKY130 / sky130A, `sky130_fd_sc_hd` |
+| SRAM makrosu | `sky130_sram_1kbyte_1rw1r_32x256_8` (1 KiB, 256×32, 1RW+1R) |
+| Saat | 65 ns (~15,4 MHz) |
+| Signoff köşeleri | tt_025C_1v80, ff_n40C_1v95, ss_100C_1v60 |
+| LVS | Netgen — circuits match |
+| Zamanlama | tt ve ff köşeleri temiz; ss sınırlayıcı köşe (belgelendi) |
+| Çıktı | GDSII / LEF / DEF üretildi |
 
-**13 milestone, ~10 saat çalışma, DTR raporu 855→1678 satır (%96 büyüme).**
+Ayrıntılı akış, yeniden çalıştırma komutları, raporlar ve bilinen istisnalar
+`asic/README.md` içinde açıklanmıştır.
 
-**Yeni RTL Eklemeleri (Mühendislik Zarafeti — yeni RTL yazılmadan):**
-- **M29**: Boot ROM (512 B @ 0x00) — `ram_axi.sv` parametreli yeniden kullanım, 6/6 PASS, 12 handshake
-- **M31**: Dual UART (2× UART) — `uart_axi.sv` 2 instance, 6/6 PASS, 'U' 'S' '1' ekranda, 38 handshake
-
-**DTR Rapor Güncellemeleri (12/13 bölüm tamamlandı):**
-- **M27**: Bölüm 10 (Şartname Kriterleri) + Bölüm 13 (Sonuç)
-- **M30**: Bölüm 3 (Memory Map ÖTR Tablo 1 birebir)
-- **M32**: Bölüm 3 UART-1 → M31 OK
-- **M34**: Bölüm 11 (Takvim, 4 faz, 33 milestone tablosu)
-- **M35**: Bölüm 4 (Modül Detayları, 13 RTL detay)
-- **M36**: Bölüm 6 (Doğrulama Metodolojisi, 4 katman)
-- **M37**: Bölüm 8 (Karşılaşılan Zorluklar, AXI geçiş hikayesi)
-- **M38**: Bölüm 5 (Tasarım Kararları, AXI4-Lite rasyonel)
-- **M39**: Bölüm 2 (ÖNTR Değişiklikler, OTR-DTR uyum %92)
-
-**Görsel Kanıt + GitHub:**
-- **M28**: GitHub commits + git tag screenshot, dtr-pre-axi-m17 annotated'a çevrildi
-- **M33**: UART-dual + Lint screenshots (10 görsel toplam)
-
----
-
-## Sıradaki Adımlar
-
-### Hafta Sonu (9-10 Mayıs) — Vivado Sentez ⭐
-**Sorumlu:** Umur Buğra Dikmen + Betül Bedir
-- Arty A7-100T için Vivado projesi oluşturma
-- Sentez raporu (resource utilization)
-- Static Timing Analysis (STA)
-- 50 MHz timing constraint doğrulama
-- Sonuç: 3 yeni screenshot DTR raporuna
-
-### Hafta 2 (5-11 Mayıs)
-- **Boot ROM + Memory Map** (7-8 May): Şartname §4.2.2.1 (QSPI'dan boot, 512B-1KB ROM)
-- **2. UART Instance** (11 May): Şartname §4.2.2 (genel + YZ veri akışı)
-- **DTR Bölüm 10, 13 güncelleme**
-
-### Hafta 3 (12-15 Mayıs)
-- **Mermaid diyagramları PNG'ye çevirme** (mermaid CLI veya mermaid.live)
-- **DTR PDF üretimi** (pandoc, A4, 11 punto Calibri, 1.15 satır)
-- **Son revizyon ve format kontrolü**
-- **15 May 17:00** — DTR Teslim 🎯
-
-### Final Dönemi (Mayıs-Temmuz 2026)
-- soc_top tam AXI4-Lite entegrasyonu (Faz 7)
-- YZ Hızlandırıcı (TFLite Tiny Conv)
-- QSPI Master
-- UART RX (Receive)
-- UVM Agent (AXI doğrulama)
-- GDSII (Sky130 + OpenLane)
-- JTAG Debug (opsiyonel)
-
----
-
-## Test Sonuçları (Detaylı)
-
-### AXI4-Lite Bağımsız Slave Testleri
-
-| Modül | Yazmaç | Test | Transaction | Sonuç |
-|-------|--------|------|-------------|-------|
-| ram_axi (M18) | parametreli | 4 | 4W + 4R | ✅ PASS |
-| gpio_axi (M19) | 2 (32-bit) | 4 | 2W + 3R | ✅ PASS |
-| timer_axi (M20) | 8 (EK-2) | 5 | 7W + 5R | ✅ PASS |
-| uart_axi (M21) | 5 (EK-2) | 6 | 4W + 4R | ✅ PASS |
-| i2c_master_axi (M22) | 5 (EK-2) | 5 | 5W + 5R | ✅ PASS |
-| **TOPLAM** | | **24** | **37** | **✅ 0 hata** |
-
-### AXI4-Lite Bridge
-
-| Test | Transaction | Sonuç |
-|------|-------------|-------|
-| Tek WRITE | 1 | ✅ PASS |
-| Tek READ | 1 | ✅ PASS |
-| Back-to-back 5 WRITE | 5 | ✅ 5/5 PASS |
-| Back-to-back 5 READ | 5 | ✅ 5/5 PASS |
-| **TOPLAM** | **12** | **✅ 0 hata** |
-
-### AXI Protocol Check (Şartname §5.2 Min. Kriter #3)
-
-5 SVA assertion: AW/W/B/AR/R stability
-
-| Modül | AW | W | B | AR | R | FAIL |
-|-------|----|----|----|----|----|------|
-| ram_axi | 4 | 4 | 4 | 4 | 4 | 0 |
-| gpio_axi | 2 | 2 | 2 | 3 | 3 | 0 |
-| timer_axi | 7 | 7 | 7 | 5 | 5 | 0 |
-| **TOPLAM** | **13** | **13** | **13** | **12** | **12** | **0** |
-
-**63 handshake gözlemi, 5 × 63 = 315 kural değerlendirmesi, 0 ASSERT FAIL.**
-
-### Test Kanıt Görselleri
-
-Her AXI testi için terminal screenshot ve simulator çıktısı:
-
-- `docs/screenshots/01_ram_axi_test.png` + `.txt`
-- `docs/screenshots/02_gpio_axi_test.png` + `.txt`
-- `docs/screenshots/03_timer_axi_test.png` + `.txt`
-- `docs/screenshots/04_uart_axi_test.png` + `.txt`
-- `docs/screenshots/05_i2c_master_axi_test.png` + `.txt`
-- `docs/screenshots/06_axi_bridge_test.png` + `.txt`
-
----
-
-## Proje Yapısı
+## Depo yapısı
 
 ```
-cv32_sim/
-├── rtl/                          # Sentezlenebilir RTL (13 modül)
-│   ├── ram.sv, ram_axi.sv        # 8KB RAM (OBI + AXI4-Lite)
-│   ├── gpio.sv, gpio_axi.sv      # GPIO (16-bit OBI / 32-bit AXI)
-│   ├── timer.sv, timer_axi.sv    # Timer (32-bit, 8 yazmaç EK-2)
-│   ├── uart.sv, uart_axi.sv      # UART (TX state machine)
-│   ├── i2c_master.sv, i2c_master_axi.sv  # I2C (10-durumlu)
-│   ├── obi_to_axi_lite.sv        # AXI Bridge (Faz 1)
-│   ├── soc_top.sv                # OBI tabanlı sistem (mevcut)
-│   └── fpga_top.sv               # FPGA wrapper (Arty A7)
-├── tb/                           # Testbench dosyaları
-│   ├── tb_top.sv                 # Ana sistem testbench
-│   ├── obi_assertions.sv         # OBI Protocol Check (M07)
-│   ├── axi_lite_assertions.sv    # AXI Protocol Check (M23)
-│   └── *_axi_tb.sv               # AXI bağımsız testbench (5 adet)
-├── sw/                           # RISC-V test programları
-│   ├── hello.S, test_gpio.S      # Self-checking testler
-│   ├── test_timer.S, test_full.S # Regression test
-│   └── *.hex                     # Linker output
-├── docs/                         # Dokümantasyon (16+ .md)
-│   ├── DTR_RAPORU_v0.md          # DTR Raporu (1039 satır)
-│   ├── SARTNAME_ANALIZI.md       # Şartname analizi (M16)
-│   ├── MIMARI_DIYAGRAM.md        # 3 Mermaid diyagram
-│   ├── milestone_XX.md           # Her milestone için rapor
-│   └── screenshots/              # Test kanıt görselleri
-├── constraints/
-│   └── arty_a7.xdc               # FPGA pin atamaları
-├── build*.sh                     # Otomasyon scriptleri (8 adet)
-└── README.md                     # Bu dosya
+rtl/          Sentezlenebilir RTL (çekirdek entegrasyonu, çevre birimleri, YZ)
+tb/           Self-checking testbench'ler ve regresyon betiği
+sw/           Boot yazılımı (crt0, helloworld), linker script, C header'lar
+fpga/         Nexys Video üst modülü ve XDC kısıtları
+asic/         LibreLane RTL->GDSII akışı (config, constraints, macros, sonuçlar)
+dtr_demo/     DDK demo testbench entegrasyonu (Vivado)
+docs/         DTR, mühendislik notları, milestone raporları, ekran görüntüleri
+cv32e40p/     CV32E40P çekirdek kaynakları (üçüncü taraf)
 ```
 
----
+## Kurulum ve çalıştırma
 
-## Kurulum ve Çalıştırma
+Bağımlılıklar: Verilator 5.020+, RISC-V GCC (rv32imc), Icarus Verilog, Python 3,
+make, git. FPGA için Vivado 2021.2; ASIC için Nix + LibreLane 3.0.6.
 
-### Bağımlılıklar
+Regresyon (tüm bloklar, self-checking):
 
-- **Verilator** 5.020+ (`--timing` flag testbench için gerekli)
-- **xPack RISC-V GCC** 13.2.0+ (`xpack-riscv-none-elf-gcc-13.2.0-2`)
-- **CV32E40P RTL**: Ayrı klonlanmalı (`~/cv32e40p/`)
-- Python 3, make, bash, git
-
-### CV32E40P Çekirdeği
-
-```bash
-git clone https://github.com/openhwgroup/cv32e40p ~/cv32e40p
+```
+./run_regression.sh
 ```
 
-### Eski OBI Sistem (M01-M15)
+FPGA: `fpga/` altındaki akışla Nexys Video (XC7A200T) hedeflenerek bitstream
+üretilir.
 
-```bash
-./build.sh
-./obj_dir/sim_cv32 | head -30
+ASIC (ayrıntı `asic/README.md`):
+
 ```
-**Beklenen:** `data=0x00000054` (T = Timer test PASS)
-
-### AXI4-Lite Bağımsız Testler (M17-M22)
-
-Her modül için ayrı build script:
-
-```bash
-./build_axi.sh        # M17: AXI Bridge testi
-./build_ram_axi.sh    # M18: RAM AXI4-Lite testi
-./build_gpio_axi.sh   # M19: GPIO AXI4-Lite testi
-./build_timer_axi.sh  # M20: Timer AXI4-Lite testi
-./build_uart_axi.sh   # M21: UART AXI4-Lite testi
-./build_i2c_axi.sh    # M22: I2C AXI4-Lite testi
+cd asic
+make asic_run
 ```
 
-Her script şu çıktıyı verir:
-- `[TB] ====== ALL TESTS PASSED ======`
-- `[AXI-CHECK] Sonuc raporu` (M23 protocol check sonrası)
+## Tasarım kararları
 
----
+- **AXI4-Lite:** OBI ile başlanıp AXI4-Lite'a geçildi — endüstri standardı,
+  EDA/IP uyumu ve SVA ile protokol doğrulanabilirliği için.
+- **Tek adres çözücü:** Tek master ve tekil transfer ihtiyacı için crossbar
+  yerine merkezî adres çözücü; daha küçük alan, daha kolay doğrulama.
+- **Paylaşımlı MAC:** YZ katmanları sıralı çalıştığından tek MAC — alan tasarrufu.
+- **Softmax yazılımda:** Argmax için gereksiz ve pahalı olduğundan CPU'ya bırakıldı.
+- **BRAM çıkarımı:** `ram_axi` içinde `ram_style="block"` ve reset'in bellekten
+  ayrılması ile sentez süresi belirgin biçimde kısaldı.
 
-## Bellek Haritası
+## Bilinen sınırlamalar ve yol haritası
 
-Mevcut OBI tabanlı sistem (eski) ve AXI4-Lite slave'ler aynı bellek adreslerini kullanır:
+- ASIC ss köşesinde artık setup payı mevcut (kaynak: pipelinesız MAC yolu);
+  çözüm datapath pipeline derinleştirme.
+- Kapsama ilk faz seviyesinde; hedef satır ≥%95 / dal ≥%90 (yönlendirilmiş +
+  kısıtlı-rastgele + UVM).
+- İkinci faza planlı: QSPI Master ve Flash boot, JTAG debug, UVM doğrulama ortamı.
 
-| Adres Aralığı | Modül | Boyut | Yazmaç |
-|---------------|-------|-------|--------|
-| `0x00000000-0x00001FFF` | IRAM | 8 KB | (program kodu) |
-| `0x00020000-0x00021FFF` | DRAM | 8 KB | (veri belleği) |
-| `0x40000000-0x40000FFF` | GPIO | - | IDR (0x00), ODR (0x04) |
-| `0x40001000-0x40001FFF` | Timer | - | PRE/ARE/CLR/ENA/MOD/CNT/EVN/EVC (8 yazmaç) |
-| `0x40002000-0x40002013` | UART | - | CPB/STP/RDR/TDR/CFG (5 yazmaç) |
-| `0x40004000-0x40004017` | I2C Master | - | NBY/ADR/RDR/TDR/CFG (5 yazmaç) |
+Alınan kararlar ve karşılaşılan sorunların ayrıntısı için: `docs/NOTES.md`.
 
-**Not:** Yazmaç haritaları şartname EK-2'ye birebir uyumlu.
+## Kaynaklar
 
----
+- CV32E40P — OpenHW Group: https://github.com/openhwgroup/cv32e40p
+- AMBA AXI4-Lite — ARM IHI 0022
+- RISC-V ISA: https://riscv.org
+- TFLite Micro (Tiny Conv): https://github.com/tensorflow/tflite-micro
+- SkyWater SKY130 PDK / Open PDKs, LibreLane, OpenROAD, Yosys, Magic, KLayout, Netgen
+- Verilator: https://www.veripool.org/verilator/
+- Digilent Nexys Video referansları
 
-## FPGA Sentez (Arty A7-100T)
+## Lisans ve üçüncü taraf bileşenler
 
-Proje **Xilinx Artix-7 XC7A100TCSG324-1** (Digilent Arty A7-100T) için sentezlenebilir hale getirilmiştir (M10).
-
-### Vivado Projesi Oluşturma
-
-1. Vivado 2023.x aç
-2. **Create New Project** → RTL Project → "Do not specify sources" seç
-3. **Part:** `xc7a100tcsg324-1`
-4. **Add Sources** (Design Sources):
-   - `rtl/cv32e40p_*.sv` (CV32E40P kaynak dosyaları, ayrı klonlanmalı)
-   - `rtl/ram.sv`, `rtl/gpio.sv`, `rtl/timer.sv`, `rtl/uart.sv`
-   - `rtl/i2c_master.sv`, `rtl/soc_top.sv`
-   - `rtl/fpga_top.sv` (**TOP MODULE** olarak işaretle)
-5. **Add Constraints:** `constraints/arty_a7.xdc`
-6. **Run Synthesis**
-
-### FPGA Pin Atamaları
-
-| Sinyal | Yön | FPGA Pin | Açıklama |
-|--------|-----|----------|----------|
-| sysclk | input | E3 | 100 MHz osilatör |
-| cpu_resetn | input | D9 | Reset push button (active low) |
-| uart_tx | output | D10 | USB-UART köprü (FPGA→PC) |
-| led[3:0] | output | H5, J5, T9, T10 | 4 LED |
-| sw[3:0] | input | A8, C11, C10, A10 | 4 Switch |
-
-### Clock Yapısı
-
-- Arty 100 MHz `sysclk` → /2 divider → **50 MHz çekirdek saati**
-- ÖNTR'de vaat edilen 50 MHz hedefi tutturuldu
-- Gelecek: MMCM ile gerçek clock generation
-
-### UART Kullanımı
-
-UART TX pini Arty USB-UART köprüsüne (FT2232HL) bağlı. PC'de seri port açılarak UART çıktısı görülebilir:
-
-- **Baud rate:** 9600 (CPB = 5208 ile, 50 MHz / 9600)
-- **Format:** 8N1 (8 data bit, no parity, 1 stop bit)
-- **Yazılım:** PuTTY, minicom, screen, vb.
-
-Yazılım önyükleme: CPB yazmacına 5208 yaz (default 16, simulator hızı için)
-
-```assembly
-LUI  x10, 0x40002
-ADDI x11, x0, 5208     # 0x1458
-SW   x11, 0(x10)       # CPB = 5208
-```
-
-### Reset Davranışı
-
-Push button (CPU_RESETN) basıldığında:
-1. Senkronizasyon: 2-flop senkronizatörden geçer
-2. Debounce: 16-bit sayıcı (~1.3 ms @ 50 MHz) bekleyiş
-3. `rst_n_clean` SoC'ye geçer
-
----
-
-## Teknik Kararlar
-
-- **Çekirdek:** `cv32e40p_core` seçildi (top değil, FPU wrapper bağımlılığı nedeniyle)
-- **FPU=0** (int8 AI hedefi)
-- **SystemVerilog 2017** sentetik alt küme (tip güvenliği + CV32E40P uyumu)
-- **AXI4-Lite Bridge:** OBI ↔ AXI4-Lite dönüşümü için 6 durumlu state machine
-- **Doğrulama:** SVA + always_ff (Verilator-uyumlu, pragmatik). Şartname §5.2 kriter #3 SVA ile karşılandı.
-- **Cevre birim sayısı:** Şartname kriteri 2 çevre birim, biz **5 birim** sağladık (RAM hariç GPIO, Timer, UART, I2C)
-
----
-
-## Önemli Dosyalar
-
-### Dokümantasyon
-- [`docs/DTR_RAPORU_v0.md`](docs/DTR_RAPORU_v0.md) — DTR Raporu (1039 satır, 13 ana bölüm)
-- [`docs/SARTNAME_ANALIZI.md`](docs/SARTNAME_ANALIZI.md) — Şartname analizi (M16)
-- [`docs/MIMARI_DIYAGRAM.md`](docs/MIMARI_DIYAGRAM.md) — 3 Mermaid sistem diyagramı
-- [`docs/OTR_DTR_KARSILASTIRMA.md`](docs/OTR_DTR_KARSILASTIRMA.md) — ÖNTR ↔ DTR karşılaştırması
-
-### Test Kanıtları
-- [`docs/screenshots/`](docs/screenshots/) — 6 PNG + 6 TXT (test sonuçları)
-
-### Milestone Raporları
-- `docs/milestone_01.md` ... `docs/milestone_25.md` (her milestone için ayrı rapor)
-
----
-
-## Git Tag'leri (Sigorta Noktaları)
-
-- `dtr-pre-axi-m17` — AXI geçişi öncesi (28 Nis 2026)
-- `m22-axi-slaves-done` — 6/8 AXI fazı tamam (1 May 2026)
-
-Rollback için: `git checkout TAG_NAME`
-
----
-
-## Referanslar
-
-- **CV32E40P:** https://github.com/openhwgroup/cv32e40p
-- **CV32E40P Manual:** https://docs.openhwgroup.org/projects/cv32e40p-user-manual/
-- **RISC-V Spec:** https://riscv.org
-- **TEKNOFEST:** https://www.teknofest.org
-- **Verilator:** https://www.veripool.org/verilator/
-- **AXI4-Lite Spec:** https://developer.arm.com/documentation/ihi0022
-
----
-
-## İletişim
-
-Proje hakkında sorular için takım kaptanına ulaşabilirsiniz: **Umur Buğra Dikmen**
-
-GitHub: https://github.com/betul605/ZUGA-IC
-
----
-
-**Son Güncelleme:** 5 Mayıs 2026 — Milestone 25
-**DTR Teslim:** 15 Mayıs 2026, 17:00
-**Final Teslim:** 31 Temmuz 2026
+Üçüncü taraf RTL, IP, SRAM makrosu ve araç bilgileri (kaynak, sürüm, lisans)
+`asic/THIRD_PARTY.md` içinde listelenmiştir. Kopyalanan bileşenlerin lisans ve
+telif bildirimleri korunmuştur.
