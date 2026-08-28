@@ -32,3 +32,6 @@ build_fpga/bootloader.hex
 vivado*.jou
 vivado*.log
 usage_statistics_webtalk.*
+vivado.log
+vivado_*.backup.*
+*.jou
