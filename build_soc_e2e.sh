@@ -1,0 +1,66 @@
+#!/bin/bash
+# ============================================================================
+# build.sh — Modüler SoC build scripti
+# ============================================================================
+
+set -e  # Hata varsa dur
+
+cd "$(dirname "$0")"
+
+# Program dosyasını çalışma dizinine kopyala (Verilator $readmemh için)
+cp sw/test_full.hex ./hello.hex
+
+# Önceki build'i temizle
+rm -rf obj_dir
+
+# Verilator derleme
+verilator --binary --assert --sv \
+  -I./cv32e40p/rtl \
+  -I./cv32e40p/rtl/include \
+  -I./cv32e40p/bhv \
+  ./cv32e40p/rtl/include/cv32e40p_pkg.sv \
+  ./cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv \
+  ./cv32e40p/rtl/include/cv32e40p_fpu_pkg.sv \
+  ./cv32e40p/bhv/cv32e40p_sim_clock_gate.sv \
+  ./cv32e40p/rtl/cv32e40p_core.sv \
+  ./cv32e40p/rtl/cv32e40p_if_stage.sv \
+  ./cv32e40p/rtl/cv32e40p_id_stage.sv \
+  ./cv32e40p/rtl/cv32e40p_ex_stage.sv \
+  ./cv32e40p/rtl/cv32e40p_load_store_unit.sv \
+  ./cv32e40p/rtl/cv32e40p_controller.sv \
+  ./cv32e40p/rtl/cv32e40p_cs_registers.sv \
+  ./cv32e40p/rtl/cv32e40p_decoder.sv \
+  ./cv32e40p/rtl/cv32e40p_alu.sv \
+  ./cv32e40p/rtl/cv32e40p_mult.sv \
+  ./cv32e40p/rtl/cv32e40p_register_file_ff.sv \
+  ./cv32e40p/rtl/cv32e40p_sleep_unit.sv \
+  ./cv32e40p/rtl/cv32e40p_int_controller.sv \
+  ./cv32e40p/rtl/cv32e40p_obi_interface.sv \
+  ./cv32e40p/rtl/cv32e40p_prefetch_buffer.sv \
+  ./cv32e40p/rtl/cv32e40p_prefetch_controller.sv \
+  ./cv32e40p/rtl/cv32e40p_aligner.sv \
+  ./cv32e40p/rtl/cv32e40p_compressed_decoder.sv \
+  ./cv32e40p/rtl/cv32e40p_hwloop_regs.sv \
+  ./cv32e40p/rtl/cv32e40p_ff_one.sv \
+  ./cv32e40p/rtl/cv32e40p_popcnt.sv \
+  ./cv32e40p/rtl/cv32e40p_fifo.sv \
+  ./cv32e40p/rtl/cv32e40p_alu_div.sv \
+  ./cv32e40p/rtl/cv32e40p_apu_disp.sv \
+  rtl/ram.sv \
+  rtl/uart.sv \
+  rtl/gpio.sv \
+  rtl/timer.sv \
+  rtl/i2c_master.sv \
+  rtl/soc_top.sv \
+  tb/obi_assertions.sv \
+  tb/tb_top.sv \
+  --top-module tb_top \
+  -Wno-UNOPTFLAT -Wno-WIDTHEXPAND -Wno-WIDTHTRUNC \
+  -Wno-TIMESCALEMOD -Wno-BLKANDNBLK -Wno-COMBDLY \
+  -Wno-CASEINCOMPLETE -Wno-DECLFILENAME -Wno-PINCONNECTEMPTY \
+  -Wno-UNUSEDSIGNAL -Wno-UNUSEDPARAM -Wno-GENUNNAMED \
+  -Wno-VARHIDDEN -Wno-BLKSEQ \
+  -o sim_cv32
+
+echo ""
+echo "=== Build basarili. Calistirmak icin: ./obj_dir/sim_cv32 ==="d

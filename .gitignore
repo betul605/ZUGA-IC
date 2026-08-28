@@ -35,3 +35,6 @@ usage_statistics_webtalk.*
 vivado.log
 vivado_*.backup.*
 *.jou
+obj_dir/
+hello.hex
+sim_cv32

@@ -86,6 +86,41 @@ module tb_top;
     // soc_top icindeki data_* ve instr_* sinyallerine bind ile baglanir.
     // RTL'i degistirmeden protokol kurallarini kontrol eder.
     // ========================================================================
+    // ========================================================================
+    // END-TO-END SELF-CHECK: UART veri reg (0x4000_200C) baytlarini topla.
+    // Program "PASS" yazarsa SoC testi GECER (gercek program yurutuldu).
+    // ========================================================================
+    byte   uart_stream [$];
+    string uart_str;
+    always_ff @(posedge clk) begin
+        if (rst_n && u_soc.data_req && u_soc.data_gnt && u_soc.data_we &&
+            (u_soc.data_addr == 32'h4000_200C)) begin
+            uart_stream.push_back(u_soc.data_wdata[7:0]);
+        end
+    end
+
+    final begin
+        int fp; int ff;
+        uart_str = "";
+        foreach (uart_stream[i])
+            if (uart_stream[i] != 8'h0A)
+                uart_str = {uart_str, $sformatf("%c", uart_stream[i])};
+        fp = 0; ff = 0;
+        for (int k = 0; k + 4 <= uart_str.len(); k++) begin
+            if (uart_str.substr(k, k+3) == "PASS") fp = 1;
+            if (uart_str.substr(k, k+3) == "FAIL") ff = 1;
+        end
+        $display("");
+        $display("============ END-TO-END SoC TEST ============");
+        $display("[E2E] Program : sw/test_full.hex (CV32E40P + UART/GPIO/Timer/YZ)");
+        $display("[E2E] UART out: \"%s\"", uart_str);
+        if (fp && !ff)
+            $display("[E2E] ====== PASS: SoC gercek programi yurutup dogru sonuc (PASS) uretti ======");
+        else
+            $display("[E2E] ====== FAIL: beklenen 'PASS' bulunamadi ======");
+        $display("=============================================");
+    end
+
     bind soc_top obi_assertions #(.BUS_NAME("DATA")) u_assert_data (
         .clk_i    (clk_i),
         .rst_ni   (rst_ni),
