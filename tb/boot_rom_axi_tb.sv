@@ -104,6 +104,7 @@ module boot_rom_axi_tb;
         wait (axi_rvalid);
         data = axi_rdata;
         @(posedge clk);
+        @(negedge clk);
         axi_rready  = 0;
         reads_done++;
     endtask

@@ -10,6 +10,7 @@ verilator --binary -j 0 \
     -Wno-WIDTHEXPAND \
     -Wno-WIDTHTRUNC \
     tb/axi_lite_assertions.sv \
+    tb/sky130_sram_1kbyte_1rw1r_32x256_8_sim.v \
     rtl/ram_axi.sv \
     tb/boot_rom_axi_tb.sv
 echo ""

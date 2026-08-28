@@ -72,6 +72,7 @@ run_test "uart_dual_axi"   "M31" "build_uart_dual_axi.sh"    6
 run_test "uart_rx_axi"     "M53" "build_uart_rx_axi.sh"      5
 run_test "yz_csr_axi"      "M65" "build_yz_csr_axi.sh"       8
 run_test "i2c_master_axi"  "M22" "build_i2c_axi.sh"          5
+run_test "qspi_master_axi"  "M69" "build_qspi_axi.sh"        5
 
 # ============================================================================
 # Ozet Rapor

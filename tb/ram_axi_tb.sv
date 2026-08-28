@@ -126,7 +126,7 @@ module ram_axi_tb;
         axi_bready = 1;
         wait (axi_bvalid);
         @(posedge clk);
-        axi_bready = 0;
+        @(negedge clk); axi_bready = 0;
         writes_done++;
     endtask
 
@@ -146,7 +146,7 @@ module ram_axi_tb;
         wait (axi_rvalid);
         data = axi_rdata;
         @(posedge clk);
-        axi_rready = 0;
+        @(negedge clk); axi_rready = 0;
         reads_done++;
     endtask
 
@@ -191,6 +191,7 @@ module ram_axi_tb;
         // ----------------------------------------------------------
         $display("[TB] Test 3: Write-then-Read @0x40, data=0xDEADBEEF");
         axi_write(32'h00000040, 32'hDEADBEEF, 4'b1111);
+repeat (2) @(posedge clk);
         axi_read(32'h00000040, read_data);
         if (read_data !== 32'hDEADBEEF) begin
             $display("[TB] HATA: read=%h, beklenen DEADBEEF", read_data);
@@ -201,10 +202,12 @@ module ram_axi_tb;
         // ----------------------------------------------------------
         $display("[TB] Test 4: Byte enable wstrb=4'b0001 (sadece bayt 0)");
         axi_write(32'h00000080, 32'hFFFFFFFF, 4'b1111);  // once tum dolu
+repeat (2) @(posedge clk);
         axi_read(32'h00000080, read_data);
         $display("[TB] Once dolu: read=%h", read_data);
 
         axi_write(32'h00000080, 32'h0000_00AA, 4'b0001);  // sadece bayt 0
+repeat (2) @(posedge clk);
         axi_read(32'h00000080, read_data);
         if (read_data !== 32'hFFFF_FFAA) begin
             $display("[TB] HATA: read=%h, beklenen FFFFFFAA", read_data);

@@ -162,4 +162,10 @@ module ram_axi #(
         .addr1  (8'b0),
         .dout1  ()             // bagli degil
     );
+
+`ifndef SYNTHESIS
+    // Simulasyon-only: MEM_FILE verilmisse (ROM modu) icerigi yukle.
+    // ASIC sentezinde SYNTHESIS tanimli -> bu blok yok sayilir.
+    initial if (MEM_FILE != "") $readmemh(MEM_FILE, u_sram.mem);
+`endif
 endmodule
