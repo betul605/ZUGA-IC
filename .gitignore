@@ -38,3 +38,6 @@ vivado_*.backup.*
 obj_dir/
 hello.hex
 sim_cv32
+asic/runs/
+asic/run/
+*.gds
